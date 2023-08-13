@@ -9,4 +9,4 @@ Get API key for cryptocompare here: https://www.cryptocompare.com/cryptopian/api
 If you want to use healthchecks.io monitoring, click check here: https://healthchecks.io/docs/
 Disabled by default.
 
-
+![](https://github.com/TivenTux/crypto-sidebar-pricebot/blob/main/pricebots_demo.gif)
