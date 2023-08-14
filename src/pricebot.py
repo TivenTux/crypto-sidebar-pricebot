@@ -1,23 +1,28 @@
-import discord, time, os, random, requests, json, subprocess, asyncio, urllib.request
-from discord.ext.commands import Bot
-from discord.ext import commands
+import os
+import json
+import asyncio
+import urllib.request
+import requests
+import discord
 
 
-discord_token = 'xxxxxxxxxx' #https://discord.com/developers/applications
-discord_bot_user_id = 'xxxxxxxxxx' #right click your bot in discord and select Copy ID
-cryptocompare_api_key = 'xxxxxxxx' #get one here https://www.cryptocompare.com/cryptopian/api-keys
-crypto_coin = 'LTC' #crypto coin to check for. Default is LTC (litecoin). Please use coin ticker, and not full name.
+discord_token = os.environ['discord_token'] #https://discord.com/developers/applications
+discord_bot_user_id = os.environ['discord_bot_user_id'] #right click your bot in discord and select Copy ID
+cryptocompare_api_key = os.environ['cryptocompare_api_key'] #get one here https://www.cryptocompare.com/cryptopian/api-keys
+crypto_coin = os.environ['crypto_coin'] #crypto coin to check for. Default is LTC (litecoin). Please use coin ticker, and not full name.
 #how often the bot will change nickname and presence data (price, data, etc) on the sidebar. Do not set this too low or there might be issues and throttling by discord.
-nickname_refresh_period = 55 #seconds
+nickname_refresh_period = os.environ['nickname_refresh_period'] #seconds
 
 # healthchecks.io alerts. Disabled by default
 # https://healthchecks.io/docs/
 # Use 1 to enable or 0 to disable
-enable_healthchecksio_monitoring = 0
+enable_healthchecksio_monitoring = os.environ['enable_healthchecksio_monitoring']
 #alert that gets pinged on error
-healthchecks_fail_url = 'https://hc-ping.com/yyyyy/fail'
+#healthchecks_fail_url = 'https://hc-ping.com/yyyyy/fail'
+healthchecks_fail_url = os.environ['healthchecks_fail_url']
 #success ping
-healthchecks_okcheck_url = 'https://hc-ping.com/yyyyy'
+#healthchecks_okcheck_url = 'https://hc-ping.com/yyyyy'
+healthchecks_okcheck_url = os.environ['healthchecks_okcheck_url']
 
 
 #init some discord stuff
