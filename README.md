@@ -28,7 +28,7 @@ docker build -t crypto-sidebar-pricebot .
 ## Running the container
 
 ```bash
-docker run -d -e "discord_token=yyy" -e "discord_bot_user_id=yyy" -e "cryptocompare_api_key=yyyy" -e "crypto_coin=yyy" crypto-sidebar-pricebot
+docker run -d -e "discord_token=yyy" -e "discord_bot_user_id=yyy" -e "cryptocompare_api_key=yyyy" -e "crypto_coin=LTC" crypto-sidebar-pricebot
 
 ```
 
