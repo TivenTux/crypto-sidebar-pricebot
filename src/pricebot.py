@@ -15,21 +15,20 @@ if environ.get('discord_bot_user_id') is not None:
     discord_bot_user_id = os.environ['discord_bot_user_id']
 else:
     discord_bot_user_id = ''
-#cryptocompare api not used anymore
-if environ.get('cryptocompare_api_key') is not None:
-    cryptocompare_api_key = os.environ['cryptocompare_api_key']
-else:
-    cryptocompare_api_key = ''
+
 #crypto coin to check for. Default is LTC (litecoin). Please use coin ticker, and not full name.
 if environ.get('crypto_coin') is not None:
     crypto_coin = os.environ['crypto_coin']
 else:
     crypto_coin = 'LTC'
-#how often the bot will change nickname and presence data (price, data, etc) on the sidebar. Do not set this too low or there might be issues and throttling by discord.
+
+#How often the bot will refresh data (price, data, etc) on the sidebar. 
+#Do not set this too low or there might be issues and throttling by discord.
 if environ.get('nickname_refresh_period') is not None:
     nickname_refresh_period = os.environ['nickname_refresh_period']
 else:
     nickname_refresh_period = '70' #seconds
+
 # healthchecks.io alerts. Disabled by default
 # https://healthchecks.io/docs/
 # Use 1 to enable or 0 to disable
@@ -37,19 +36,22 @@ if environ.get('enable_healthchecksio_monitoring') is not None:
     enable_healthchecksio_monitoring = os.environ['enable_healthchecksio_monitoring']
 else:
     enable_healthchecksio_monitoring = '0'
-#alert that gets pinged on error
-#healthchecks_fail_url = 'https://hc-ping.com/yyyyy/fail'
+#healthcheck alert that gets pinged on error
 if environ.get('healthchecks_fail_url') is not None:
     healthchecks_fail_url = os.environ['healthchecks_fail_url']
 else:
     healthchecks_fail_url = ''
-#success ping
-#healthchecks_okcheck_url = 'https://hc-ping.com/yyyyy'
+#healthcheck success ping
 if environ.get('healthchecks_okcheck_url') is not None:
     healthchecks_okcheck_url = os.environ['healthchecks_okcheck_url']
 else:
     healthchecks_okcheck_url = ''
 
+#cryptocompare api - not used anymore
+if environ.get('cryptocompare_api_key') is not None:
+    cryptocompare_api_key = os.environ['cryptocompare_api_key']
+else:
+    cryptocompare_api_key = ''
 
 #init some discord stuff
 intents = discord.Intents.default() 
@@ -128,7 +130,7 @@ async def background_loop():
     while keeprunning == 1:
         try:
             data_counter += 1
-            await client.wait_until_ready()
+            #await client.wait_until_ready()
             #fetch crypto data
             coin_volume24h, coin_marketcap, coin_change_pct24h, coin_change_pct1h, coin_price = get_latest_crypto_data()
             #change bot nickname value
