@@ -59,11 +59,17 @@ client = discord.Client(intents=intents)
 #wait for client to be ready then launch the loop
 @client.event
 async def on_ready():
+    '''
+    Waits till the discord client is ready, then starts main loop
+    '''
     print('Logged in as', client.user.name)
     await background_loop()
 
 #cryptowatch api, replaced by cryptocompare
 def get_latest_cryptowatch_price():
+    '''
+    Gets coin data from cryptowatch api
+    '''
     #convert to lowercase for gdax
     ticker = crypto_coin.lower()
     cryptowatch_request = 'https://api.cryptowat.ch/markets/coinbase-pro/' + str(ticker) + 'usd/price'
@@ -73,6 +79,9 @@ def get_latest_cryptowatch_price():
 
 #fetch latest crypto data from cryptocompare api
 def get_latest_crypto_data():
+    '''
+    Gets coin data from cryptocompare api.
+    '''
     cryptocompare_api_call = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + str(crypto_coin) + '&tsyms=USD&api_key=' + str(cryptocompare_api_key)
     response = requests.get(cryptocompare_api_call)
     json_data2 = json.loads(response.text)
@@ -93,16 +102,25 @@ def get_latest_crypto_data():
 #healthcheck pings
 #error ping
 def healthcheck_error():
+    '''
+    Pings healthchecks.io fail url
+    '''
     urllib.request.urlopen(healthchecks_fail_url)
     return
 #success ping
 def healthcheck_okcheck():
+    '''
+    Pings healthchecks.io success url
+    '''
     urllib.request.urlopen(healthchecks_okcheck_url)
     return  
 
 #background timer loop
 @client.event
 async def background_loop():
+    '''
+    Main timer loop that fetches data and edits nickname & presence
+    '''
     #initiating
     keeprunning = 1
     data_counter = 0 #keeps track of data order under activity presence
