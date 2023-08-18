@@ -155,14 +155,14 @@ async def background_loop():
                     await member.edit(nick=nickname_price) 
                 except Exception as e: 
                     print(e) 
-            if enable_healthchecksio_monitoring == 1:
+            if int(enable_healthchecksio_monitoring) == 1:
             #healthcheck ping         
                 healthcheck_okcheck()     
             #wait sleep seconds, set in conf
-            await asyncio.sleep(nickname_refresh_period)
+            await asyncio.sleep(int(nickname_refresh_period))
         except Exception as e: 
             print(e)
-            if enable_healthchecksio_monitoring == 1:
+            if int(enable_healthchecksio_monitoring) == 1:
             #healthcheck fail ping
                 healthcheck_error()
             #timeout 3 minutes on error
