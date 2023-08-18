@@ -1,28 +1,54 @@
 import os
+from os import environ
 import json
 import asyncio
 import urllib.request
 import requests
 import discord
 
-
-discord_token = os.environ['discord_token'] #https://discord.com/developers/applications
-discord_bot_user_id = os.environ['discord_bot_user_id'] #right click your bot in discord and select Copy ID
-cryptocompare_api_key = os.environ['cryptocompare_api_key'] #get one here https://www.cryptocompare.com/cryptopian/api-keys
-crypto_coin = os.environ['crypto_coin'] #crypto coin to check for. Default is LTC (litecoin). Please use coin ticker, and not full name.
+if environ.get('discord_token') is not None:
+    discord_token = os.environ['discord_token']
+else:
+    discord_token = ''
+#right click your bot in discord and select Copy ID
+if environ.get('discord_bot_user_id') is not None:
+    discord_bot_user_id = os.environ['discord_bot_user_id']
+else:
+    discord_bot_user_id = ''
+#cryptocompare api not used anymore
+if environ.get('cryptocompare_api_key') is not None:
+    cryptocompare_api_key = os.environ['cryptocompare_api_key']
+else:
+    cryptocompare_api_key = ''
+#crypto coin to check for. Default is LTC (litecoin). Please use coin ticker, and not full name.
+if environ.get('crypto_coin') is not None:
+    crypto_coin = os.environ['crypto_coin']
+else:
+    crypto_coin = 'LTC'
 #how often the bot will change nickname and presence data (price, data, etc) on the sidebar. Do not set this too low or there might be issues and throttling by discord.
-nickname_refresh_period = os.environ['nickname_refresh_period'] #seconds
-
+if environ.get('nickname_refresh_period') is not None:
+    nickname_refresh_period = os.environ['nickname_refresh_period']
+else:
+    nickname_refresh_period = '70' #seconds
 # healthchecks.io alerts. Disabled by default
 # https://healthchecks.io/docs/
 # Use 1 to enable or 0 to disable
-enable_healthchecksio_monitoring = os.environ['enable_healthchecksio_monitoring']
+if environ.get('enable_healthchecksio_monitoring') is not None:
+    enable_healthchecksio_monitoring = os.environ['enable_healthchecksio_monitoring']
+else:
+    enable_healthchecksio_monitoring = '0'
 #alert that gets pinged on error
 #healthchecks_fail_url = 'https://hc-ping.com/yyyyy/fail'
-healthchecks_fail_url = os.environ['healthchecks_fail_url']
+if environ.get('healthchecks_fail_url') is not None:
+    healthchecks_fail_url = os.environ['healthchecks_fail_url']
+else:
+    healthchecks_fail_url = ''
 #success ping
 #healthchecks_okcheck_url = 'https://hc-ping.com/yyyyy'
-healthchecks_okcheck_url = os.environ['healthchecks_okcheck_url']
+if environ.get('healthchecks_okcheck_url') is not None:
+    healthchecks_okcheck_url = os.environ['healthchecks_okcheck_url']
+else:
+    healthchecks_okcheck_url = ''
 
 
 #init some discord stuff
