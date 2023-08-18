@@ -16,6 +16,12 @@ if environ.get('discord_bot_user_id') is not None:
 else:
     discord_bot_user_id = ''
 
+#cryptocompare api key - https://www.cryptocompare.com/cryptopian/api-keys
+if environ.get('cryptocompare_api_key') is not None:
+    cryptocompare_api_key = os.environ['cryptocompare_api_key']
+else:
+    cryptocompare_api_key = ''
+
 #crypto coin to check for. Default is LTC (litecoin). Please use coin ticker, and not full name.
 if environ.get('crypto_coin') is not None:
     crypto_coin = os.environ['crypto_coin']
@@ -46,12 +52,6 @@ if environ.get('healthchecks_okcheck_url') is not None:
     healthchecks_okcheck_url = os.environ['healthchecks_okcheck_url']
 else:
     healthchecks_okcheck_url = ''
-
-#cryptocompare api - not used anymore
-if environ.get('cryptocompare_api_key') is not None:
-    cryptocompare_api_key = os.environ['cryptocompare_api_key']
-else:
-    cryptocompare_api_key = ''
 
 #init some discord stuff
 intents = discord.Intents.default() 
