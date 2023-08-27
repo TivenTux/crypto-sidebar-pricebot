@@ -1,7 +1,7 @@
 ## Discord sidebar - crypto pricebots
 Discord sidebar price bots for crypto. Will show latest price, volume, market cap, percentage of change for 24h and 1h. 
 
-## Environmental Variables
+### Environmental Variables
 
 **discord_token** - Your discord bot token. https://discord.com/developers/applications <br>
 **discord_bot_user_id** - Your discord's user ID<br>
@@ -17,15 +17,16 @@ You can specify these environment variables when starting the container using th
 ```bash
 docker run -e "discord_token=yyyy"
 ```
+_Privileged Gateway Intents (Presence & Server Members) will need to be enabled on Bot options on [discord developers panel](https://discord.com/developers/applications) in order for the bots to be able to cycle their name/status through all the servers they have joined._
 
-## Building the container
+### Building the container
 
 After having cloned this repository, you can run
 ```bash
 docker build -t crypto-sidebar-pricebot .
 ```
 
-## Running the container
+### Running the container
 
 ```bash
 docker run -d -e "discord_token=yyy" -e "discord_bot_user_id=yyy" -e "cryptocompare_api_key=yyyy" -e "crypto_coin=LTC" crypto-sidebar-pricebot
